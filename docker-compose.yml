@@ -14,8 +14,8 @@ services:
     # Keep keys in volumes
     volumes:
       - "./data/tor:/etc/tor"
-      #- "./data/tor-keys/:/var/lib/tor/hidden_service/"
-      - "tor-keys:/var/lib/tor/hidden_service/"
+      - "./data/tor-keys/:/var/lib/tor/hidden_service/"
+        #- "tor-keys:/var/lib/tor/hidden_service/"
 
 volumes:
   tor-keys:

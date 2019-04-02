@@ -32,5 +32,5 @@ HEALTHCHECK --timeout=30s --start-period=90s \
 
 
 VOLUME  ["/var/lib/tor/hidden_service/"]
-EXPOSE 9150
+EXPOSE 9050
 CMD ["/usr/bin/tor", "-f", "/etc/tor/torrc"]

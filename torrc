@@ -1,3 +1,6 @@
 Log notice stdout
-SocksPort 0.0.0.0:9150
+
+## Enable TOR SOCKS proxy
+SocksPort 9050
+
 ExitPolicy reject *:*
