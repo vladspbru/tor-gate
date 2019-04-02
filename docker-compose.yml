@@ -12,12 +12,13 @@ services:
       - "9050:9050"
 
     # Keep keys in volumes
-    volumes:
-      - "./data/tor:/etc/tor"
-      - "./data/tor-keys/:/var/lib/tor/hidden_service/"
-        #- "tor-keys:/var/lib/tor/hidden_service/"
+    #volumes:
+      #- "./data/tor:/etc/tor"
+      #- "./data/tor-keys/:/var/lib/tor/hidden_service/"
+      #- "tor-keys:/var/lib/tor/hidden_service/"
 
 volumes:
   tor-keys:
      driver: local
+
 

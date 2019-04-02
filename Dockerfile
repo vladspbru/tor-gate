@@ -21,16 +21,20 @@ RUN     apk add --no-cache git libevent-dev openssl-dev gcc make automake ca-cer
         apk del git libevent-dev openssl-dev make automake gcc autoconf musl-dev coreutils && \
         apk add --no-cache libevent openssl curl 
 
-ADD     torrc /etc/tor/torrc
+COPY    torrc /etc/tor/torrc
 RUN     mkdir -p ${HOME}/.tor && \
         addgroup -S -g 107 tor && \
         adduser -S -G tor -u 104 -H -h ${HOME} tor
 
     
 HEALTHCHECK --timeout=30s --start-period=90s \
-    CMD curl --fail --socks5-hostname localhost:9150 -I -L 'https://cdnjs.com/' || exit 1
+    CMD curl --fail --socks5-hostname localhost:9050 -I -L 'https://cdnjs.com/' || exit 1
 
 
 VOLUME  ["/var/lib/tor/hidden_service/"]
+
 EXPOSE 9050
+
+COPY docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/usr/local/bin/tor", "-f", "/etc/tor/torrc"]
