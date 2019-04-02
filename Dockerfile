@@ -26,7 +26,6 @@ RUN     mkdir -p ${HOME}/.tor && \
         addgroup -S -g 107 tor && \
         adduser -S -G tor -u 104 -H -h ${HOME} tor
 
-    
 HEALTHCHECK --timeout=30s --start-period=90s \
     CMD curl --fail --socks5-hostname localhost:9050 -I -L 'https://cdnjs.com/' || exit 1
 
@@ -37,4 +36,4 @@ EXPOSE 9050
 
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["/usr/local/bin/tor", "-f", "/etc/tor/torrc"]
+CMD ["tor", "-f", "/etc/tor/torrc"]
