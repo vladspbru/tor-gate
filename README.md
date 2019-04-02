@@ -11,12 +11,12 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
 1. Setup the proxy server at the **first time**
 
     ```sh
-    $ docker run -d --name tor_socks_proxy -p 127.0.0.1:9150:9150 dockerhub/tor-socks-proxy:latest
+    $ docker run -d --name tor_socks_proxy -p 127.0.0.1:9050:9050 dockerhub/tor-socks-proxy:latest
     ```
 
     - Use `127.0.0.1` to limit the connections from localhost, do not change it unless you know you're going to expose it to a local network or to the Internet.
-    - Change to first `9150` to any valid and free port you want, please note that port `9050`/`9150` may already taken if you are also running other Tor client, like TorBrowser.
-    - Do not touch the second `9150` as it's the port inside the docker container unless you're going to change the port in Dockerfile.
+    - Change to first `9050` to any valid and free port you want, please note that port `9050`/`9050` may already taken if you are also running other Tor client, like TorBrowser.
+    - Do not touch the second `9050` as it's the port inside the docker container unless you're going to change the port in Dockerfile.
 
     If you already setup the instance before *(not the first time)*, just start it:
 
@@ -37,21 +37,21 @@ The super easy way to setup a [Tor](https://www.torproject.org) [SOCKS5](https:/
     Jan 10 01:07:02.000 [notice] Bootstrapped 100%: Done
     ```
 
-3. Configure your client to use it, target on `127.0.0.1` port `9150`(Or the other port you setup in step 1)
+3. Configure your client to use it, target on `127.0.0.1` port `9050`(Or the other port you setup in step 1)
 
     Take `curl` as an example, checkout what's your IP address via Tor network:
 
     ```sh
-    $ curl --socks5-hostname 127.0.0.1:9150 ipinfo.io/ip
-    $ curl --socks5-hostname 127.0.0.1:9150 icanhazip.com
-    $ curl --socks5-hostname 127.0.0.1:9150 ipecho.net/plain
-    $ curl --socks5-hostname 127.0.0.1:9150 whatismyip.akamai.com
+    $ curl --socks5-hostname 127.0.0.1:9050 ipinfo.io/ip
+    $ curl --socks5-hostname 127.0.0.1:9050 icanhazip.com
+    $ curl --socks5-hostname 127.0.0.1:9050 ipecho.net/plain
+    $ curl --socks5-hostname 127.0.0.1:9050 whatismyip.akamai.com
     ```
 
     Take `ssh` and `nc` as an example, connect to a host via Tor:
 
     ```sh
-    $ ssh -o ProxyCommand='nc -x 127.0.0.1:9150 %h %p' target.hostname.blah
+    $ ssh -o ProxyCommand='nc -x 127.0.0.1:9050 %h %p' target.hostname.blah
     ```
 
 4. After using it, you can turn it off
