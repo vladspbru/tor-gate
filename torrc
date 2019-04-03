@@ -1,8 +1,8 @@
 Log notice stdout
 
 ## Enable TOR SOCKS proxy
-SocksPort 9050
-#SocksPort 0.0.0.0:9050
+#SocksPort 9050
+SocksPort 0.0.0.0:9050
 #SOCKSPolicy accept 127.0.0.0/24
 #SOCKSPolicy accept 192.168.0.0/16
 #SOCKSPolicy accept6 FC00::/7
