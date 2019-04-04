@@ -9,7 +9,6 @@ RUN     apk add --no-cache git libevent-dev openssl-dev gcc make automake ca-cer
         git clone https://git.torproject.org/tor.git /usr/local/src/tor && \
         cd /usr/local/src/tor && \
         git checkout $(git branch -a | grep 'release' | sort -V | tail -1) && \
-        head ChangeLog | grep version | awk -F"version" '{print $2}' | grep - | awk '{ print $1 }' > /version && \
         ./autogen.sh && \
         ./configure \
             --disable-asciidoc \
@@ -19,7 +18,8 @@ RUN     apk add --no-cache git libevent-dev openssl-dev gcc make automake ca-cer
         cd .. && \
         rm -rf tor && \
         apk del git libevent-dev openssl-dev make automake gcc autoconf musl-dev coreutils && \
-        apk add --no-cache libevent openssl curl 
+        apk add --no-cache libevent openssl curl && \
+        tor --version > /version
 
 COPY    torrc /etc/tor/torrc
 RUN     mkdir -p ${HOME}/.tor && \
